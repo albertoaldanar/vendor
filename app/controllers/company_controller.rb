@@ -4,6 +4,7 @@ class CompanyController < ApplicationController
   def get_team_info
 
     top_low = @vendors.minmax_by { |x| x["sales"] }
+    #Aqui tenemos que corrergir para que estas ventas sean solo de mi equipo
     product_count = Sell.all.group(:product_type).count
 
     total_sales = 0
