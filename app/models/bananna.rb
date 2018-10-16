@@ -1,0 +1,2 @@
+class Bananna < ApplicationRecord
+end

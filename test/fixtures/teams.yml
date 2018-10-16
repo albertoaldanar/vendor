@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company: one
+  name: MyString
+  vendor_amount: 1
+  admin_amount: 1
+
+two:
+  company: two
+  name: MyString
+  vendor_amount: 1
+  admin_amount: 1

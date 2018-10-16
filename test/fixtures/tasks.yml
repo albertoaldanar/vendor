@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: 
+  type: 
+  time: 2018-08-18 12:57:39
+  client: MyString
+  user: one
+  value: 1
+
+two:
+  description: 
+  type: 
+  time: 2018-08-18 12:57:39
+  client: MyString
+  user: two
+  value: 1
