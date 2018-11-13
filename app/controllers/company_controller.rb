@@ -7,15 +7,15 @@ class CompanyController < ApplicationController
     #Aqui tenemos que corrergir para que estas ventas sean solo de mi equipo
     product_count = Sell.all.group(:product_type).count
 
-    total_sales = 0
+    @@total_sales = 0
 
     @my_vendors.each do |vend|
       vend.sells.each do |v|
-        total_sales += v.price
+        @@total_sales += v.price
       end
     end
 
-    render json: { "goal": @team.goal, "sales": total_sales, "vendors": @vendors, "top_low": top_low, "products": @product_group, "count": product_count }
+    render json: { "goal": @team.goal, "sales": @@total_sales, "vendors": @vendors, "top_low": top_low, "products": @product_group, "count": product_count }
   end
 
 
