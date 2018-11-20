@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get "v_tasks" => "tasks#vendor_tasks"
     get "projection" => "sell#projection"
     get "authorization" => "sell#authorization"
+    put "authorize" => "sell#edit_sale"
     resources :sell
     resources :users
     resources :task_admins

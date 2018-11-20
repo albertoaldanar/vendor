@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181114001838) do
+ActiveRecord::Schema.define(version: 20181120232253) do
 
   create_table "admins", force: :cascade do |t|
     t.integer  "team_id"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20181114001838) do
     t.integer  "amount"
     t.string   "subcategory"
     t.string   "efficiency"
+    t.string   "month"
     t.index ["user_id"], name: "index_sells_on_user_id"
   end
 

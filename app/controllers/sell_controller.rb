@@ -53,9 +53,20 @@ class SellController < ApplicationController
     render json: { "unauthorized": unauthorized }
   end
 
+
+  def edit_sale
+    sale = Sale.find(params[:id])
+    sale.update!(sales_params)
+    sale.save!
+
+    render json: {"sale": sale}
+  end
+
   private
 
   def sales_params
-      params.require(:sell).permit(:user_id, :product_type, :price, :week, :finished, :client, :model, :authorized, :efficiency, :brand )
+      params.require(:sell).permit( :user_id, :product_type, :price, :week, :finished, :client, :model, :authorized, :efficiency, :brand, :amount, :month )
   end
+
+
 end
