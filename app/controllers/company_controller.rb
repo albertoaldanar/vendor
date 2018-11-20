@@ -15,13 +15,16 @@ class CompanyController < ApplicationController
       end
     end
 
-    render json: { "goal": @team.goal, "sales": @@total_sales, "vendors": @vendors, "top_low": top_low, "products": @product_group, "count": product_count }
+    x = User.last.sells.group(:product_type).count
+
+    render json: { "x": x, "goal": @team.goal, "sales": @@total_sales, "vendors": @vendors, "top_low": top_low, "products": @product_group, "count": product_count }
   end
 
 
   def week_stats
     data = {}
     final = []
+    register = {}
     i = 0
     y = 0
     x = 0
@@ -29,8 +32,12 @@ class CompanyController < ApplicationController
     @my_vendors.each do |vend|
       weeks = Sell.where("finished = ? AND user_id = ?", false, vend.id).group(:week).sum(:price)
       data[vend.name] = weeks.values
+
+      reg = Sell.where("finished = ? AND user_id = ?", false, vend.id).group(:product_type).count
+      register[vend.name] = reg
     end
 
+      # Sell.where("finished = ? AND user_id = ?", false, vend.id).group(:product_type).coun
 #:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     a = data.values[0]
 
@@ -68,7 +75,8 @@ class CompanyController < ApplicationController
 
 
     result = [arrA,arrB,arrC]
-    render json: { "weeks" => data, "result": result, "goal": @team.goal}
+
+    render json: { "reg": register, "weeks" => data, "result": result, "goal": @team.goal }
   end
 
   private

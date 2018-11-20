@@ -17,7 +17,6 @@ class SellController < ApplicationController
 
 
   def projection
-    #proyeccion semanal
     projection = []
     weeks = []
     my_team = Team.first
@@ -46,12 +45,17 @@ class SellController < ApplicationController
     arr.delete_at(0)
 
     render json: {"projection": projection, "my_team": arr}
+  end
 
+
+  def authorization
+    unauthorized = Sell.where(authorized: false)
+    render json: { "unauthorized": unauthorized }
   end
 
   private
 
   def sales_params
-      params.require(:sell).permit(:user_id, :product_type, :price, :week, :finished, :client)
+      params.require(:sell).permit(:user_id, :product_type, :price, :week, :finished, :client, :model, :authorized, :efficiency, :brand )
   end
 end

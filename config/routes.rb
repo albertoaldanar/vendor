@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get "week_stats" => "company#week_stats"
     get "v_tasks" => "tasks#vendor_tasks"
     get "projection" => "sell#projection"
+    get "authorization" => "sell#authorization"
     resources :sell
     resources :users
     resources :task_admins
