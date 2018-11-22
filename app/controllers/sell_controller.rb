@@ -18,7 +18,7 @@ class SellController < ApplicationController
 
   def projection
     projection = []
-    weeks = []
+    # weeks = []
     my_team = Team.first
     users = User.where(team_id: my_team.id)
 
@@ -29,24 +29,24 @@ class SellController < ApplicationController
       projection << num += team_goal
     end
 
-    users.each do |x|
-      w =  Sell.where("user_id = ?", x.id).group(:weeks).sum(:price)
-      weeks << w.values
-    end
+    # users.each do |x|
+    #   w =  Sell.where("user_id = ?", x.id).group(:week).sum(:price)
+    #   weeks << w.values
+    # end
 
-    w =  Sell.where("week = ?", 2).group(:weeks).sum(:price)
+    w = Sell.all.group(:week).sum(:price).values
 
     y = 0
-    t = weeks.flatten
+    # t = weeks.flatten
     arr = [0]
 
-    while y < t.length do
+    while y < w.length do
       y += 1
-      arr[y] = t[y-1] + (arr[y-1] || 0)
+      arr[y] = w[y-1] + (arr[y-1] || 0)
     end
     arr.delete_at(0)
 
-    render json: {"projection": projection, "my_team": arr}
+    render json: {"projection": projection, "my_team": arr, "w": w}
   end
 
 
