@@ -30,9 +30,11 @@ class SellController < ApplicationController
     end
 
     users.each do |x|
-       w =  Sell.where("user_id = ?", x.id).group(:weeks).sum(:price)
-       weeks << w.values
+      w =  Sell.where("user_id = ?", x.id).group(:weeks).sum(:price)
+      weeks << w.values
     end
+
+    w =  Sell.where("week = ?", 2).group(:weeks).sum(:price)
 
     y = 0
     t = weeks.flatten
@@ -52,7 +54,6 @@ class SellController < ApplicationController
     unauthorized = Sell.where(authorized: false)
     render json: { "unauthorized": unauthorized }
   end
-
 
   def edit_sale
     sale = Sale.find(params[:id])
