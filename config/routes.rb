@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   scope '/api' do
     post 'user_token' => 'user_token#create'
     get "user_type" => "users#get_user_type"
@@ -8,8 +9,10 @@ Rails.application.routes.draw do
     get "v_tasks" => "tasks#vendor_tasks"
     get "projection" => "sell#projection"
     get "authorization" => "sell#authorization"
+    get "variable" => "variables#var"
     put "authorize" => "sell#edit_sale"
     resources :sell
+    resources :variables
     resources :users
     resources :task_admins
     resources :admins

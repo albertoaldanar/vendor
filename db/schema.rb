@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181120232253) do
+ActiveRecord::Schema.define(version: 20181122175456) do
 
   create_table "admins", force: :cascade do |t|
     t.integer  "team_id"
@@ -117,6 +117,13 @@ ActiveRecord::Schema.define(version: 20181120232253) do
     t.integer  "points"
     t.string   "name"
     t.index ["team_id"], name: "index_users_on_team_id"
+  end
+
+  create_table "variables", force: :cascade do |t|
+    t.integer  "week"
+    t.string   "month"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
